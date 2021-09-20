@@ -18,7 +18,7 @@
 PRODUCT_RELEASE_NAME := pine
 
 # Inherit from this configs
-$(call inherit-product, vendor/pb/config/common.mk)
+$(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, build/target/product/core_64_bit.mk)
 
 # Device identifier. This must come after all inclusions.
