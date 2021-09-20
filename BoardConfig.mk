@@ -150,3 +150,122 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 BOARD_NEEDS_VENDORIMAGE_SYMLINK := false
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
+
+#### BEGIN SHRP STUFF ####
+
+# NOTE:
+# Don't use '-' or blank spaces in flag values! 
+# These will create build errors or other bugs in recovery (Excluding SHRP_PATH,SHRP_REC).
+#
+# NOTE-2:
+# all values within these brackets: "<" ">" showing choice values and need to be 
+# replaced by you with the correct values!
+# Example: if the codename of your device is "gtexslte" <device-codename> becomes:
+# SHRP_DEVICE_CODE := gtexslte
+# (so without any brackets ofc!)
+
+################### ############################################
+# MANDATORY FLAGS # These flags HAVE TO be set/changed by you! #
+################### ############################################
+
+# Device codename
+# Default (if not set): N/A
+SHRP_DEVICE_CODE := pine
+
+# Path of your SHRP device tree
+# Replace <device-brand> with the device brand name
+# (SHRP_DEVICE_CODE will expand to the above variable so check if that is correct)
+SHRP_PATH := device/xiaomi/$(SHRP_DEVICE_CODE)
+
+# Maintainer name
+# Default (if not set): N/A
+SHRP_MAINTAINER := Flopster101
+
+# Recovery Type (for "About" section only)
+# Default (if not set): N/A
+SHRP_REC_TYPE := SAR
+
+# Device Type (for "About" section only)
+# Default (if not set): N/A
+SHRP_DEVICE_TYPE := A_Only
+
+# Your device's recovery path, dont use blindly
+# No default
+SHRP_REC := /dev/block/bootdevice/by-name/recovery
+
+################### ################################################################################
+# IMPORTANT FLAGS # These are usually good to check - at least if the defaults are what you expect #
+################### ################################################################################
+
+# Emergency DownLoad mode (0 = no EDL mode, 1 = EDL mode available)
+# Default (if not set): 0
+SHRP_EDL_MODE := 1
+
+# internal storage path
+# Default (if not set): /sdcard
+SHRP_INTERNAL := /sdcard
+
+# If your device has an external sdcard
+# Default (if not set): /
+SHRP_EXTERNAL := /external_sd
+
+# USB OTG path
+# Default (if not set): /
+SHRP_OTG := /usb_otg
+
+# Flashlight: (0 = disable, 1 = enable)
+# Default (if not set): 0
+SHRP_FLASH := 0
+
+################## #########################################################################
+# OPTIONAL FLAGS # Stuff which highly depends on your device and / or personal preferences #
+################## #########################################################################
+
+# Use this flag only if your device is A/B.
+# Default (if not set) is no A/B device
+# Set this variable when true ONLY (do not use "false" or similiar)
+SHRP_AB := false
+
+# SHRP padding flag (for rounded corner devices only)
+# You have to change these values according to your device's roundness.
+SHRP_STATUSBAR_RIGHT_PADDING := 12
+# Default (for LEFT): 20
+SHRP_STATUSBAR_LEFT_PADDING := 12
+
+# For notch devices
+# Default (if not set) is no notch
+# Set this variable when true ONLY (do not use "false" or similiar)
+SHRP_NOTCH := false
+
+# SHRP Express, enables on-the-fly theme patching (also persistent) + persistent lock
+# Default (if not set) is not using Express
+# Set this variable when true ONLY (do not use "false" or similiar)
+SHRP_EXPRESS := true
+
+# SHRP Dark mode, use this flag to have dark theme set by default
+# Default (if not set) is not using DARK mode
+# Set this variable when true ONLY (do not use "false" or similiar)
+SHRP_DARK := true
+
+# custom led paths for flashlight
+# find yours then replace the examples here
+#SHRP_CUSTOM_FLASHLIGHT := true
+#SHRP_FONP_1 := /sys/class/leds/led:torch_0/brightness
+#SHRP_FONP_2 := /sys/class/leds/led:torch_1/brightness
+#SHRP_FONP_3 := /sys/class/leds/led:switch/brightness
+
+# Max brightness of flashlight
+# you can also check the above led paths in Android when you turn on flashlight
+#SHRP_FLASH_MAX_BRIGHTNESS := 200
+
+# Force mount system in /system despite SAR policy
+# useful for maintaining backwards compatibility and/or Samsung devices
+# Default (if not set) is to follow the SAR policy
+# Set this variable when true ONLY (do not use "false" or similiar)
+SHRP_NO_SAR_AUTOMOUNT := true
+
+# Do not include the SHRP theming system
+# Useful to save space for devices with a smaller recovery partition
+# Default (if not set) is full theming support
+# Set this variable when true ONLY (do not use "false" or similiar)
+#SHRP_LITE := true
